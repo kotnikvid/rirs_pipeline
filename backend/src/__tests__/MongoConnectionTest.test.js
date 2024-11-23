@@ -13,7 +13,9 @@ describe('Mongo Connect', () => {
 
     test('should connect to MongoDB instance', async () => {
         try {
-            await mongoose.connect(dbURI);
+            await mongoose.connect(dbURI, {
+                serverSelectionTimeoutMS: 10000, // Fail faster if it can't connect
+            });
 
             console.log("MongoDB connected successfully");
 
