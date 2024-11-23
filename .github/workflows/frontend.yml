@@ -38,5 +38,5 @@ jobs:
     - name: Upload artefacts
       uses: actions/upload-artifact@v3
       with:
-        name: frontend-artifacts
+        name: frontend-coverage
         path: frontend/coverage/
