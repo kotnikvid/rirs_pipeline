@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "main": "index.mjs",
   "scripts": {
-    "start": "nodemon index.mjs"
+    "start": "nodemon index.mjs",
+    "test-local": "cross-env NODE_ENV=test npx jest"
   },
   "keywords": [],
   "author": "",
@@ -15,9 +16,15 @@
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.21.1",
-    "mongoose": "^8.8.2"
+    "jest": "^29.7.0",
+    "mongodb-memory-server": "^10.1.2",
+    "mongoose": "^8.8.2",
+    "supertest": "^7.0.0"
   },
   "devDependencies": {
-    "nodemon": "^3.1.7"
+    "@types/jest": "^29.5.14",
+    "cross-env": "^7.0.3",
+    "nodemon": "^3.1.7",
+    "ts-jest": "^29.2.5"
   }
 }

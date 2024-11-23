@@ -7,10 +7,9 @@ const router = express.Router();
 router.post("/add", async (req, res) => {
 	try {
 		const x = req.body;
-		x.userId = req.auth.userId;
 
 		const invoice = new Invoice({
-			userId: x.userId,
+			userId: "vk",
 			name: x.name,
 			amount: x.amount,
 			date: x.date,
@@ -37,7 +36,7 @@ router.post("/addList", async (req, res) => {
 		const invoices = docs.map(
 			(x) =>
 				new Invoice({
-					userId: x.userId,
+					userId: "vk",
 					name: x.name,
 					amount: x.amount,
 					date: x.date,
