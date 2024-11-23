@@ -1,0 +1,17 @@
+#landing-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 80vh;
+}
+
+#landing-container svg {
+    font-size: 3.5em;
+    margin-top: 10px;
+    color: gold;
+}
+
+#landing-heading {
+    font-size: 5em;
+}

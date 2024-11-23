@@ -1,0 +1,20 @@
+nav {
+    background-color: var(--main-bg-colour);
+    color: var(--main-font-colour);
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+nav a {
+    color: var(--main-font-colour);
+    text-decoration: none;
+}
+
+nav a:hover {
+    font-weight: bold;
+}
+
+.nav-button {
+    margin: 0 10px;
+}

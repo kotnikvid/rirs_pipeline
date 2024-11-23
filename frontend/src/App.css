@@ -1,0 +1,32 @@
+:root {
+  --main-bg-colour: #0276FA;
+  --main-font-colour: #FFF;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+}
+
+main {
+  margin-bottom: 50px;
+  min-height: 90vh;
+}
+
+.text-green {
+  color: lightgreen!important;
+}
+
+.text-red {
+  color: red!important;
+}
+
+.bold {
+  font-weight: bold!important;
+}
+
+.bg-blue {
+  background-color: #0d6efd!important;
+}

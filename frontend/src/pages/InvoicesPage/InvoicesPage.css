@@ -1,0 +1,13 @@
+#table-container {
+    width: 80%;
+    margin: 10px auto;
+}
+
+#controls-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+#controls-container button svg {
+    margin-right: 10px;
+}

@@ -1,0 +1,10 @@
+#import-container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin: 15px 0;
+}
+
+#import-container div:nth-child(1) {
+    padding-right: 15px;
+}
