@@ -31,7 +31,7 @@ jobs:
     - name: Run tests
       run: |
         cd backend
-        npx jest --coverage --detectOpenHandles
+        npx jest --detectOpenHandles
     - name: Upload artefacts
       uses: actions/upload-artifact@v3
       with:
