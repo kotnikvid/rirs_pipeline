@@ -1,0 +1,39 @@
+name: Backend
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+env:
+  DB_URI: mongodb+srv://react:rRZRHcVVK42CHy@rirs-invoices.z2owt.mongodb.net/?retryWrites=true&w=majority&appName=RIRS-Invoices
+  
+jobs:
+  test-backend:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: 20
+
+    - name: Install dependencies
+      run: |
+        cd backend
+        npm i
+    - name: Run tests
+      run: |
+        cd backend
+        npx jest --coverage
+    - name: Upload artefacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: backend-artifacts
+        path: backend/coverage/
