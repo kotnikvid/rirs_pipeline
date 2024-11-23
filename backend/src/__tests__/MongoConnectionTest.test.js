@@ -28,6 +28,8 @@ describe('Mongo Connect', () => {
     }, 50000);
 
     afterAll(async () => {
-        await connection.close();
+        if (connection.readyState === 1) {
+            await connection.close();
+        }
     });
 });
