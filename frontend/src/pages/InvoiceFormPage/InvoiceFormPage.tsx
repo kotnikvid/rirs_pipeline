@@ -3,7 +3,7 @@ import { Link, useParams, useNavigate } from "react-router-dom";
 import "./InvoiceFormPage.css";
 import axios from "axios";
 import { Invoice } from "../../classes/Invoice";
-import { useState } from "react";
+import React, { useState } from "react";
 import { RequestUtil } from "../../utils/RequestUtil";
 import { useAuth } from "@clerk/clerk-react";
 
@@ -74,9 +74,7 @@ const InvoiceFormPage: React.FC<InvoiceFormPageProps> = ({ isReadOnly }) => {
 	};
 
 	const formattedDueDate =
-		invoice.dueDate instanceof Date
-			? invoice.dueDate.toISOString().split("T")[0] // Format to 'YYYY-MM-DD'
-			: "";
+		invoice.dueDate.toISOString().split("T")[0];
 
 	return (
 		<div id="invoice-form-container">
