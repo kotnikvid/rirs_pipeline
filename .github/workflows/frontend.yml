@@ -8,6 +8,10 @@ on:
     branches:
       - main
 
+env:
+  VITE_CLERK_PUBLISHABLE_KEY: pk_test_Y29taWMtc3F1aWQtODkuY2xlcmsuYWNjb3VudHMuZGV2JA
+  CLERK_PUBLISHABLE_KEY: pk_test_Y29taWMtc3F1aWQtODkuY2xlcmsuYWNjb3VudHMuZGV2JA
+
 jobs:
   test-frontend:
     runs-on: ubuntu-latest
