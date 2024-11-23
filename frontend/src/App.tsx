@@ -13,8 +13,9 @@ function App() {
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/invoices" element={<InvoicesPage />} />
-          <Route path="/invoices/add" element={<InvoiceFormPage />} />
-          <Route path="/invoices/edit/:id" element={<InvoiceFormPage />} />
+          <Route path="/invoices/:id" element={<InvoiceFormPage isReadOnly={true} />} />
+          <Route path="/invoices/add" element={<InvoiceFormPage isReadOnly={false} />} />
+          <Route path="/invoices/edit/:id" element={<InvoiceFormPage isReadOnly={false} />} />
           <Route path="/auth" element={<AuthPage />} />
         </Routes>
       </MainLayout>

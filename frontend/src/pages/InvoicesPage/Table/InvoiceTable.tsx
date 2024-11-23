@@ -25,21 +25,6 @@ const InvoiceTable = () => {
 	const [loading, setLoading] = useState<boolean>(true);
 	const auth = useAuth();
 
-	// const getAllData = async () => {
-	// 	try {
-	// 		const response = await axios.get("/api/db/all");
-	// 		// Map the response data to Invoice instances
-	// 		const invoiceData: Invoice[] = response.data.map((data: any) =>
-	// 			Invoice.fromJSON(data)
-	// 		);
-	// 		setInvoices(invoiceData); // Set the state with the array of Invoice objects
-	// 	} catch (error) {
-	// 		console.error("Error fetching invoices:", error);
-	// 	} finally {
-	// 		setLoading(false); // Set loading to false after fetch is complete
-	// 	}
-	// };
-
 	const getDataByPage = async (page: number) => {
 		try {
 			const response = await axios.get(
@@ -74,7 +59,10 @@ const InvoiceTable = () => {
 
 	const deleteInvoice = async (id: string) => {
 		try {
-			await axios.delete("api/db/delete/" + id);
+			await axios.delete(
+				"api/db/delete/" + id,
+				RequestUtil.getDefaultRequestConfig(await auth.getToken())
+			);
 			// Map the response data to Invoice instances
 			refreshData(currentPage);
 		} catch (error) {
@@ -154,7 +142,7 @@ const InvoiceTable = () => {
 					</thead>
 					<tbody>
 						{invoices?.map((data, index) => (
-							<tr>
+							<tr key={data._id}>
 								<td>{(currentPage - 1) * 5 + index + 1}</td>
 								<td>{data.name}</td>
 								<td>{data.amount} €</td>
