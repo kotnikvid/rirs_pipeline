@@ -1,5 +1,5 @@
 const dotenv = require("dotenv");
-const {connect, connection} = require("mongoose");
+const mongoose = require("mongoose");
 
 dotenv.config();
 
@@ -8,19 +8,16 @@ describe('Mongo Connect', () => {
 
     beforeAll(() => {
         jest.setTimeout(50000);
-
         dbURI = process.env.DB_URI;
     });
 
     test('should connect to MongoDB instance', async () => {
         try {
-            await connect(dbURI);
+            await mongoose.connect(dbURI);
 
             console.log("MongoDB connected successfully");
 
-            const db = connection;
-            expect(db.readyState).toBe(1);
-
+            expect(mongoose.connection.readyState).toBe(1);
         } catch (error) {
             console.error("Error connecting to MongoDB", error);
             throw new Error('MongoDB connection failed');
@@ -28,8 +25,13 @@ describe('Mongo Connect', () => {
     }, 50000);
 
     afterAll(async () => {
-        if (connection.readyState === 1) {
-            await connection.close();
+        try {
+            if (mongoose.connection.readyState === 1) {
+                await mongoose.disconnect();
+                console.log("MongoDB connection closed");
+            }
+        } catch (error) {
+            console.error("Error during disconnect", error);
         }
     });
 });
