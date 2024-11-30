@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1732978948410" clover="3.2.0">
-  <project timestamp="1732978948410" name="All files">
+<coverage generated="1732979648841" clover="3.2.0">
+  <project timestamp="1732979648841" name="All files">
     <metrics statements="64" coveredstatements="21" conditionals="4" coveredconditionals="0" methods="11" coveredmethods="3" elements="79" coveredelements="24" complexity="0" loc="64" ncloc="64" packages="2" files="2" classes="2"/>
     <package name="models">
       <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
@@ -13,7 +13,7 @@
     </package>
     <package name="routes">
       <metrics statements="61" coveredstatements="18" conditionals="4" coveredconditionals="0" methods="11" coveredmethods="3"/>
-      <file name="invoiceRoutes.mjs" path="C:\Users\Vid Kotnik\Desktop\UNI\rirs\solo_labs\backend\src\routes\invoiceRoutes.mjs">
+      <file name="invoiceRoutes.js" path="C:\Users\Vid Kotnik\Desktop\UNI\rirs\solo_labs\backend\src\routes\invoiceRoutes.js">
         <metrics statements="61" coveredstatements="18" conditionals="4" coveredconditionals="0" methods="11" coveredmethods="3"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>

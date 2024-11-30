@@ -11,7 +11,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:src\routes\invoiceRoutes.mjs
+SF:src\routes\invoiceRoutes.js
 FN:7,(anonymous_0)
 FN:32,(anonymous_1)
 FN:37,(anonymous_2)
