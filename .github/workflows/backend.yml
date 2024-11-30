@@ -12,6 +12,39 @@ env:
   DB_URI: mongodb+srv://react:rRZRHcVVK42CHy@rirs-invoices.z2owt.mongodb.net/?retryWrites=true&w=majority&appName=RIRS-Invoices
   
 jobs:
+  build-backend:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: 20
+        
+    - name: Cache node_modules
+      uses: actions/cache@v3
+      with:
+        path: backend/node_modules
+        key: ${{ runner.os }}-frontend-${{ hashFiles('backend/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-backend-
+
+    - name: Install dependencies
+      run: |
+        cd backend
+        npm ci
+
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: backend-build
+        path: |
+          backend
+          backend/node_modules
+
   test-backend:
     runs-on: ubuntu-latest
 
@@ -23,6 +56,14 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: 20
+
+    - name: Cache node_modules
+      uses: actions/cache@v3
+      with:
+        path: backend/node_modules
+        key: ${{ runner.os }}-frontend-${{ hashFiles('backend/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-backend-
 
     - name: Install dependencies
       run: |
