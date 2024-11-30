@@ -1,7 +1,7 @@
 import "dotenv/config";
 import express from "express";
 import bodyParser from "body-parser";
-import invoiceRoutes from "./src/routes/invoiceRoutes.mjs";
+import invoiceRoutes from "./src/routes/invoiceRoutes.js";
 import cors from "cors";
 import { verifyToken } from "@clerk/express";
 import mongoose from "mongoose";

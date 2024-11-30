@@ -16,11 +16,6 @@ const InvoicesPage: React.FC = () => {
 
 	const importInvoices = async (invoices: Invoice[]) => {
 		try {
-			console.log(
-				"Token",
-				RequestUtil.getDefaultRequestConfig(await auth.getToken())
-			);
-
 			await axios.post(
 				"/api/db/addList",
 				invoices,

@@ -1,0 +1,31 @@
+#dashboard-page-container {
+    width: 80%;
+    margin: 0 auto;
+    padding-top: 20px;
+}
+
+#dashboard-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 0.5fr 0.5fr;
+    column-gap: 5rem;
+    row-gap: 4rem;
+}
+
+.graph-container {
+    height: 87%;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.data-box {
+    display: flex;
+    font-size: 1.2rem;
+}
+
+.data-box p:nth-of-type(1) {
+    font-weight: bold;
+    margin-right: 10px;
+}

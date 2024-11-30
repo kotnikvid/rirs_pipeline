@@ -24,6 +24,9 @@ const NavBar: React.FC = () => {
 					<Link className="nav-button" to="/invoices">
 						Invoices
 					</Link>
+					<Link className="nav-button" to="/dashboard">
+						Dashboard
+					</Link>
 					<SignOutButton>
 						<Button variant="light" size="sm">
 							Sign out
