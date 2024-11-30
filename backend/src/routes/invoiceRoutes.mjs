@@ -1,5 +1,5 @@
-import express from "express";
-import Invoice from "../models/Invoice.js";
+const express = require("express");
+const Invoice = require("../models/Invoice.js");
 
 const router = express.Router();
 
@@ -99,26 +99,37 @@ router.delete("/delete/:id", async (req, res) => {
 	}
 });
 
-// // Route to update a document by `_id`
-// router.put("/update/:id", async (req, res) => {
-// 	//should only owner be able to update this? if so then wee need to add a check here!!
-// 	const { id } = req.params;
-// 	const newData = req.body; // Get the new data from request body
-
-// 	try {
-// 		const response = await updateDocument(id, newData);
-// 		res.json({ message: "Document updated successfully", response });
-// 	} catch (error) {
-// 		res.status(500).json({ error: error.message });
-// 	}
-// });
-
 //get number of pages
 router.get("/pages", async (req, res) => {
 	try {
 		const response = await Invoice.find().sort({ dueDate: -1 });
 		res.json(Math.ceil(response.length / 5));
 	} catch (error) {
+		res.status(500).json({ error: error.message });
+	}
+});
+
+router.get("/analytics", async (req, res) => {
+	try {
+		const response = await Invoice.find().sort({ dueDate: -1 });
+
+		const data = {
+			totalInvoices: response.length,
+			invoicesPaid: response.filter(i => i.statusPaid === true).length,
+			invoicesSent: response.filter(i => i.statusSent === true).length,
+			amountPaid: (await Invoice.aggregate([
+				{ $match: { statusPaid: true } },
+				{ $group: { _id: null, totalAmount: { $sum: "$amount" } } } // Sum the `amount` field
+			]))[0].totalAmount,
+			amountOwed: (await Invoice.aggregate([
+				{ $match: { statusPaid: false } },
+				{ $group: { _id: null, totalAmount: { $sum: "$amount" } } } // Sum the `amount` field
+			]))[0].totalAmount
+		}
+
+		res.json(data);
+	} catch (error) {
+		console.error(error);
 		res.status(500).json({ error: error.message });
 	}
 });
@@ -132,4 +143,4 @@ router.get("/wipe", async (req, res) => {
 	}
 });
 
-export default router;
+module.exports = router;
