@@ -1,5 +1,5 @@
-const express = require("express");
-const Invoice = require("../models/Invoice.js");
+import express from "express";
+import Invoice from "../models/Invoice.js";
 
 const router = express.Router();
 
@@ -143,4 +143,4 @@ router.get("/wipe", async (req, res) => {
 	}
 });
 
-module.exports = router;
+export default router;
