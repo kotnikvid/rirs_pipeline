@@ -103,6 +103,56 @@ jobs:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: ./docs
 
+  sonarcloud-analysis:
+    needs: test-frontend  
+    runs-on: ubuntu-latest
+    environment:
+
+      name: Development      
+    if: github.ref == 'refs/heads/main' 
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: 20
+        
+    - name: Setup Java 17
+      uses: actions/setup-java@v3
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+
+    - name: Install dependencies
+      run: |
+        cd frontend
+        npm ci
+
+    - name: Collect coverage (React-specific)
+      run: |
+        cd frontend
+        npm run test:coverage
+      env:
+        CI: true
+
+    - name: Upload coverage report
+      run: |
+        cp frontend/coverage/lcov.info .
+
+    - name: Run SonarCloud analysis
+      env:
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      run: |
+        npx sonar-scanner \
+          -Dsonar.projectKey=${{ secrets.PROJECT_KEY }} \
+          -Dsonar.organization=${{ secrets.ORGANIZATION_KEY }} \
+          -Dsonar.sources=./frontend \
+          -Dsonar.host.url=https://sonarcloud.io \
+          -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info
+
   dockerize-and-push-dev:
     needs: test-frontend
     runs-on: ubuntu-latest
