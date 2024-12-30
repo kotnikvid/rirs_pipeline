@@ -190,7 +190,7 @@ jobs:
 
     - name: Check SonarCloud Quality Gate
       run: |
-        RESPONSE=$(curl -s -u ${{ secrets.SONAR_TOKEN }}: "https://sonarcloud.io/api/project_badges/measure?project=<your_project_key>&metric=alert_status")
+        RESPONSE=$(curl -s -u ${{ secrets.SONAR_TOKEN }}: "https://sonarcloud.io/api/project_badges/measure?project=${{ secrets.PROJECT_KEY }}&metric=alert_status")
         echo "SonarCloud Response: $RESPONSE"
         echo "$RESPONSE" | grep -q "OK" || { echo "Quality Gate failed!"; exit 1; }
       shell: bash
